@@ -1,0 +1,29 @@
+body {
+    height: 100%;
+    margin: 0;
+}
+.content {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.todayContainer {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.lcard {
+    display: flex;
+    flex-direction: column;
+}
+.rcard {
+    display: grid;
+    grid-template: 1.5fr 1fr 1fr 1fr / 1fr;
+}
+.rcard > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: .5rem;
+}
