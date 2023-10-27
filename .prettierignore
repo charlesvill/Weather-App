@@ -1,0 +1,7 @@
+# ignore artifacts: 
+.git
+node_modules/
+.eslintrc.json
+package.json
+.prettierrc
+.webpack.config.js
