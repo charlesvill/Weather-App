@@ -1,4 +1,7 @@
+import {format} from 'date-fns'
+
 const displayWeather = (data, giph) => {
+    console.dir(data);
     const contentParent = document.querySelector(".content");
     const todayCont = document.querySelector(".todayContainer");
     const weekContainer = document.querySelector(".weekContainer");
@@ -47,15 +50,15 @@ const displayWeather = (data, giph) => {
         currentGiph.src = giph.url;
         condText.textContent = data.condition.text;
         condIcon.src = data.condition.icon;
-        hiCont.textContent = data.today.day.maxtemp_f;
-        lowCont.textContent = data.today.day.mintemp_f;
+        hiCont.textContent = String(data.forecastday[0].day.maxtemp_f).slice(0,2);
+        lowCont.textContent = String(data.forecastday[0].day.mintemp_f).slice(0,2);
         humCont.textContent =
-        `${data.today.day.avghumidity} %`;
+        `${data.forecastday[0].day.avghumidity} %`;
         windCont.textContent =
         `${data.wind_mph} ${data.wind_dir}`;
         precipTxt.textContent = "Precipitation";
         precip.textContent =
-        `${data.today.day.totalprecip_in} in`;
+        `${data.forecastday[0].day.totalprecip_in} in`;
 
         todayCont.appendChild(lcard);
         todayCont.appendChild(rcard);
@@ -74,10 +77,52 @@ const displayWeather = (data, giph) => {
         precipCont.appendChild(precipTxt);
         precipCont.appendChild(precip);
     }
+
     const weekView = () => {
+        // should see how many days it has
+        // for each day, create a card for after
+        const [, ...daysAhead] = data.forecastday;
+        const cardBuilder = (day) => {
+            const card = document.createElement("div");
+            const date = document.createElement("div");
+            const icon = document.createElement("img");
+            const tempCont = document.createElement("div");
+            const hi = document.createElement("div");
+            const lo = document.createElement("div");
+
+
+            card.classList.add("aheadCard");
+            date.classList.add("aheadDate");
+            icon.classList.add("aheadIcon");
+            tempCont.classList.add("aheadTemp");
+            hi.className = "hi F";
+            lo.className = "lo F";
+
+            date.textContent = format(new Date(`${day.date}T00:00`), "eee");
+            console.log(date.textContent);
+            console.log(day);
+            icon.src = day.day.condition.icon;
+            hi.textContent = String(day.day.maxtemp_f).slice(0,2);
+            lo.textContent = String(day.day.mintemp_f).slice(0,2);
+
+            weekContainer.appendChild(card);
+            card.appendChild(date);
+            card.appendChild(icon);
+            card.appendChild(tempCont);
+            tempCont.appendChild(hi);
+            tempCont.appendChild(lo);
+
+
+        }
+
+        daysAhead.forEach(element => {
+            // pass element to card builder
+            cardBuilder(element);
+        });
 
     }
-    return {todayView, weekView};
+    todayView();
+    weekView();
 }
 
 export default displayWeather;

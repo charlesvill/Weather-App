@@ -27,3 +27,6 @@ body {
     justify-content: center;
     gap: .5rem;
 }
+.weekContainer{
+    display:flex;
+}

@@ -2,13 +2,12 @@
  const weatherFetch = (() => {
 
     function processData (dataObj) {
+        console.dir(dataObj);
         const {current:{condition},current:{icon}, current:{temp_c, temp_f}, current:{wind_mph, wind_dir}, location:{name}, location:{region}, location:{localtime}} = dataObj;
 
-        const {
-            0: today, 1: dayTwo, 2: dayThree
-        } = dataObj.forecast.forecastday;
+        const {forecastday} = dataObj.forecast;
 
-        return {condition, icon, temp_c, temp_f, wind_mph, wind_dir, localtime, name, region, today, dayTwo, dayThree};
+        return {condition, icon, temp_c, temp_f, wind_mph, wind_dir, localtime, name, region, forecastday};
 
     }
 

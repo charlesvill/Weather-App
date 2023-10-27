@@ -10,8 +10,7 @@ const initializer = () => {
 
     const dataObj = async (search) => {
         const weatherObj = await weatherFetch.getData(search);
-
-        displayWeather(weatherObj.obj, weatherObj.giphsearch).todayView();
+        const displayHelper = displayWeather(weatherObj.obj, weatherObj.giphsearch);
     }
 
    form.addEventListener("submit", (e) => {
