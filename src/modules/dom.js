@@ -1,14 +1,15 @@
-const displayWeather = (data) => {
+const displayWeather = (data, giph) => {
+    const contentParent = document.querySelector(".content");
     const todayCont = document.querySelector(".todayContainer");
     const weekContainer = document.querySelector(".weekContainer");
 
     const clearViews = (() => {todayCont.innerHTML = '';})();
 
     const todayView = () => {
-        const header = document.createElement("h3");
+        const header = document.createElement("h3"); // currently not being used
         const lcard = document.createElement("div");
         const currentTemp = document.createElement("div");
-        const currentGiph = document.createElement("div");
+        const currentGiph = document.createElement("img");
         const rcard = document.createElement("div");
         const condCont = document.createElement("div");
         const condText = document.createElement("div");
@@ -43,9 +44,10 @@ const displayWeather = (data) => {
 
         header.textContent = `${data.name}, ${data.region}`;
         currentTemp.textContent = data.temp_f;
+        currentGiph.src = giph.url;
         condText.textContent = data.condition.text;
         condIcon.src = data.condition.icon;
-        hiCont.textContent = data.today.day.maxtemp_c;
+        hiCont.textContent = data.today.day.maxtemp_f;
         lowCont.textContent = data.today.day.mintemp_f;
         humCont.textContent =
         `${data.today.day.avghumidity} %`;
@@ -55,9 +57,8 @@ const displayWeather = (data) => {
         precip.textContent =
         `${data.today.day.totalprecip_in} in`;
 
-        todayCont.appendChild(header);
-        todayCont.appendChild(rcard);
         todayCont.appendChild(lcard);
+        todayCont.appendChild(rcard);
         lcard.appendChild(currentTemp);
         lcard.appendChild(currentGiph);
         rcard.appendChild(condCont);

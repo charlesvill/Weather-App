@@ -5,11 +5,30 @@
         const {current:{condition},current:{icon}, current:{temp_c, temp_f}, current:{wind_mph, wind_dir}, location:{name}, location:{region}, location:{localtime}} = dataObj;
 
         const {
-            0:today, 1:dayTwo, 2: dayThree
+            0: today, 1: dayTwo, 2: dayThree
         } = dataObj.forecast.forecastday;
 
         return {condition, icon, temp_c, temp_f, wind_mph, wind_dir, localtime, name, region, today, dayTwo, dayThree};
 
+    }
+
+    function processGiphData (dataObj) {
+        const {url, height, width} = dataObj.data[0].images.fixed_height;
+        return {url, height, width};
+    }
+
+    async function getGiph (condition) {
+        const endpoint = `https://api.giphy.com/v1/gifs/search?api_key=1Mf6aV1UwPT2Wwtde5hl2QXPhSIJAfNh&q=${condition}&limit=1&offset=0&rating=g&lang=en&bundle=messaging_non_clips`;
+
+        try {
+            const response = await fetch(endpoint, {mode: "cors"});
+            if(!response.ok){throw new Error(response.status)}
+            const json = await response.json();
+            const giphyUrl = processGiphData(await json);
+            return giphyUrl;
+        } catch (err) {
+            throw new Error(`There was issue with giphy response: ${err}`);
+        }
     }
 
     async function getData (location = "Los Angeles") {
@@ -19,15 +38,16 @@
         const response = await fetch(endpoint, {mode: "cors"});
         if(!response.ok){throw new Error(response.status)}
         const json  = await response.json();
-        console.log(json);
         const obj = processData(await json);
-        return obj;
+        const giphsearch = await getGiph(obj.condition.text);
+        return {obj, giphsearch};
 
     } catch(err) {
         throw new Error(`There was a problem getting a network response: ${err}`);
     }
 
     }
+
     return {getData};
 })();
 
