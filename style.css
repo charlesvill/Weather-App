@@ -2,6 +2,9 @@ body {
     height: 100%;
     margin: 0;
 }
+.searchCont{
+    display: flex;
+}
 .content {
     display: flex;
     flex-direction: column;
@@ -12,11 +15,21 @@ body {
     display: flex;
     justify-content: space-evenly;
 }
-
+.f::after {
+    content: " °F";
+    color: grey;
+    font-size: .7rem;
+}
+.c::after {
+    content: " °C";
+    color: grey;
+    font-size: .7rem;
+}
 .lcard {
     display: flex;
     flex-direction: column;
 }
+
 .rcard {
     display: grid;
     grid-template: 1.5fr 1fr 1fr 1fr / 1fr;
