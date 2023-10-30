@@ -10,11 +10,15 @@ const initializer = () => {
   const unitChange = document.getElementById("tempUnits");
 
   const dataObj = async (search) => {
-    const weatherObj = await weatherFetch.getData(search);
-    const displayBuilder = displayWeather(
-      weatherObj.obj,
-      weatherObj.giphsearch,
-    );
+    try {
+      const weatherObj = await weatherFetch.getData(search);
+      const displayBuilder = displayWeather(
+        weatherObj.obj,
+        weatherObj.giphsearch,
+      );
+    } catch {
+      alert("you should try again");
+    }
   };
 
   form.addEventListener("submit", (e) => {

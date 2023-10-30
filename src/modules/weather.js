@@ -55,14 +55,16 @@ const weatherFetch = (() => {
     try {
       const response = await fetch(endpoint, { mode: "cors" });
       if (!response.ok) {
+
         throw new Error(response.status);
+
       }
       const json = await response.json();
       const obj = processData(await json);
       const giphsearch = await getGiph(obj.condition.text);
       return { obj, giphsearch };
     } catch (err) {
-      throw new Error(`There was a problem getting a network response: ${err}`);
+      alert(`There was a problem getting a network response: ${err}`);
     }
   }
 
