@@ -63,7 +63,7 @@ export const displayWeather = (data, giph) => {
   })();
 
   const todayView = () => {
-    const header = document.createElement("h3"); // currently not being used
+    const location = document.querySelector(".location");
     const lcard = document.createElement("div");
     const currentTemp = document.createElement("div");
     const currentGiph = document.createElement("img");
@@ -81,7 +81,6 @@ export const displayWeather = (data, giph) => {
     const precipTxt = document.createElement("div");
     const precip = document.createElement("div");
 
-    header.classList.add("location");
     lcard.classList.add("lcard");
     currentTemp.classList.add("f");
     currentTemp.id = "currentTemp";
@@ -100,7 +99,7 @@ export const displayWeather = (data, giph) => {
     precipTxt.classList.add("precipTxt");
     precip.classList.add("precip");
 
-    header.textContent = `${data.name}, ${data.region}`;
+    location.textContent = `${data.name}, ${data.region}`;
     currentTemp.textContent = tempReformater(data.temp_f);
     currentGiph.src = giph.url;
     condText.textContent = data.condition.text;

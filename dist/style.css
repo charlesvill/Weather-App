@@ -1,44 +1,126 @@
+:root {
+  --b-blue: #D4F1F4;
+  --b-green: #75E6DA;
+  --b-grotto: #189AB4;
+  --n-blue: #05445E;
+}
+
 body {
   height: 100%;
   margin: 0;
+  background-color: var(--b-blue);
+  font-size: 1.3rem;
+}
+.pageContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.header {
+  background-color: var(--n-blue);
+  height: 10%;
+  width: 100%;
+  padding: .6rem;
 }
 .searchCont {
   display: flex;
 }
+.location {
+  margin: 0;
+  margin-left: 1rem;
+  font-size: .9rem;
+  color: var(--b-blue);
+}
 .content {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  padding: 2rem;
+  height: 90%;
+  background-color: var(--b-green);
+  width: clamp(240px, 80%, 2000px);
 }
 
 .todayContainer {
   display: flex;
   justify-content: space-evenly;
+  background-color: var(--b-grotto);
+  width: min(1500px, 85%);
+  padding: 1rem;
 }
+
 .f::after {
   content: " °F";
-  color: grey;
   font-size: 0.7rem;
 }
 .c::after {
   content: " °C";
-  color: grey;
   font-size: 0.7rem;
 }
 .lcard {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+}
+#currentTemp {
+  font-size: 6rem;
+}
+#currentTemp.f::after {
+  content: " °F";
+  font-size: 3rem;
+}
+#currentTemp.c::after {
+  content: " °C";
+  font-size: 3rem;
 }
 
 .rcard {
   display: grid;
-  grid-template: 1.5fr 1fr 1fr 1fr / 1fr;
+  grid-template: 1fr 1fr 1fr 1fr / 1fr;
+  height: 70%;
 }
 .rcard > div {
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: space-between;
   gap: 0.5rem;
+}
+.condText {
+  font-size: 2rem;
+}
+.condIcon {
+  width: 5rem;
+  height: auto;
 }
 .weekContainer {
   display: flex;
+}
+.hi::before {
+  content: "Hi: ";
+  font-size: .8rem;
+}
+.lo::before {
+  content: "Lo: ";
+  font-size: .8rem;
+}
+.hum::before {
+  content: "Humidity:";
+  font-size: .8rem;
+}
+.wind::before {
+  content: "Wind:";
+  font-size: .8rem;
+
+}
+.wind::after {
+  font-size: .8rem;
+
+}
+.aheadCard {
+  background-color: var(--b-blue);
+  padding: 1rem;
+  margin: .5rem;
+  text-align: center;
 }
