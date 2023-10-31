@@ -3,6 +3,10 @@ import { format } from "date-fns";
 
 let weatherApiData = null;
 const tempReformater = (num) => String(num).slice(0, 2);
+const timeReformatter = (string) => {
+  const stringArr = string.split(" ");
+  return stringArr[1];
+}
 
 export const changeTempUnits = (unit) => {
   const hiList = document.querySelectorAll(".hi");
@@ -64,6 +68,7 @@ export const displayWeather = (data, giph) => {
 
   const todayView = () => {
     const location = document.querySelector(".location");
+    const localTime = document.querySelector(".localTime");
     const lcard = document.createElement("div");
     const currentTemp = document.createElement("div");
     const currentGiph = document.createElement("img");
@@ -100,6 +105,8 @@ export const displayWeather = (data, giph) => {
     precip.classList.add("precip");
 
     location.textContent = `${data.name}, ${data.region}`;
+
+    localTime.textContent = timeReformatter(data.localtime);
     currentTemp.textContent = tempReformater(data.temp_f);
     currentGiph.src = giph.url;
     condText.textContent = data.condition.text;
