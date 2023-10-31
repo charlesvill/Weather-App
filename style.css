@@ -1,3 +1,13 @@
+@font-face {
+  font-family: 'ubuntu';
+  src:
+  url('./assets/fonts/ubuntu/ubuntu-regular-webfont.woff') format('woff'),
+  url('./assets/fonts/ubuntu/ubuntu-regular-webfont.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+}
+
+
 :root {
   --b-blue: #D4F1F4;
   --b-green: #75E6DA;
@@ -10,27 +20,56 @@ body {
   margin: 0;
   background-color: var(--b-blue);
   font-size: 1.3rem;
+  font-family: 'ubuntu', 'roboto-sans';
 }
 .pageContainer {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  height: 100%;
 }
 .header {
+  display: flex;
+  justify-content: space-between;
   background-color: var(--n-blue);
   height: 10%;
   width: 100%;
   padding: .6rem;
+
 }
+.siteTitle {
+  margin: 0 2rem;
+  color: var(--b-blue);
+}
+.siteTitle > img {
+  width: .8rem;
+  height: auto;
+  color: var(--b-blue);
+  fill: var(--b-blue);
+}
+
 .searchCont {
   display: flex;
+  gap: .7rem;
+  margin: 0 2rem;
+  font-size: .8rem;
 }
 .location {
   margin: 0;
   margin-left: 1rem;
   font-size: .9rem;
   color: var(--b-blue);
+}
+.localTime {
+  color: var(--b-blue);
+  margin: 0 2rem;
+}
+.localTime::after {
+  content: "  24hrs";
+  font-size: .7rem;
+  color: aliceblue;
+
 }
 .content {
   display: flex;
@@ -44,25 +83,30 @@ body {
 
 .todayContainer {
   display: flex;
-  justify-content: space-evenly;
-  background-color: var(--b-grotto);
-  width: min(1500px, 85%);
+  justify-content: center;
+  gap: .5rem;
+  width: min(1000px, 85%);
   padding: 1rem;
+}
+.todayContainer > div {
+  padding: 2rem;
+  border-radius: 12px;
 }
 
 .f::after {
   content: " °F";
-  font-size: 0.7rem;
+  font-size: 0.9rem;
 }
 .c::after {
   content: " °C";
-  font-size: 0.7rem;
+  font-size: 0.9rem;
 }
 .lcard {
   display: flex;
   flex-direction: column;
   align-items: center;
   padding: 1rem;
+  background-color: var(--b-grotto);
 }
 #currentTemp {
   font-size: 6rem;
@@ -80,12 +124,14 @@ body {
   display: grid;
   grid-template: 1fr 1fr 1fr 1fr / 1fr;
   height: 70%;
+  background-color: var(--b-grotto);
 }
 .rcard > div {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 0.5rem;
+  border-bottom: 2px solid #d4d4d8;
 }
 .condText {
   font-size: 2rem;
@@ -99,11 +145,11 @@ body {
 }
 .hi::before {
   content: "Hi: ";
-  font-size: .8rem;
+  font-size: .9rem;
 }
 .lo::before {
   content: "Lo: ";
-  font-size: .8rem;
+  font-size: .9rem;
 }
 .hum::before {
   content: "Humidity:";
@@ -120,7 +166,8 @@ body {
 }
 .aheadCard {
   background-color: var(--b-blue);
-  padding: 1rem;
-  margin: .5rem;
+  padding: 2rem;
+  margin: .3rem 1.5rem;
   text-align: center;
+  border-radius: 12px;
 }
